@@ -1,0 +1,18 @@
+services:
+  provider:
+    build: ./ProviderService
+    ports:
+      - 8080:8080
+    networks:
+      - my_network
+
+  consumer1:
+    build: ./ConsumerService1
+    ports:
+      - 8000:8000
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge
