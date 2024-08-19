@@ -10,6 +10,11 @@ provider_service_url = os.getenv('PROVIDER_SERVICE_URL')
 if provider_service_url is None:
     raise Exception("PROVIDER_SERVICE_URL is not set")
 
+@app.route('/hello', methods=['GET'])
+def hello():
+    print(f'hello')
+    return jsonify('hello')
+
 @app.route('/weather', methods=['GET'])
 def get_weather():
     print(f'Fetching weather from {provider_service_url}')
