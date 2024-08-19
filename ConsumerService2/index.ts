@@ -17,7 +17,8 @@ app.get('/weather', async (_, res) => {
     try {
         console.log(`Fetching weather from ${providerServiceUrl}`);
         const response = await fetch(`${providerServiceUrl}/weather`);
-        res.send(response.json());
+        const responseJson = await response.json();
+        res.send(responseJson);
     } catch (error) {
         res.status(500).send('Error fetching weather');
     }

@@ -13,6 +13,13 @@ services:
     networks:
       - my_network
 
+  consumer2:
+    build: ./ConsumerService2
+    ports:
+      - 3000:3000
+    networks:
+      - my_network
+
 networks:
   my_network:
     driver: bridge
