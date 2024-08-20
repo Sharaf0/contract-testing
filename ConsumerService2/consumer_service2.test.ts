@@ -5,9 +5,9 @@ const provider = new Pact({
     consumer: 'ConsumerService2',
     provider: 'ProviderService',
     port: 1234,
-    log: path.resolve(process.cwd(), 'logs', 'mockserver.log'),
-    dir: path.resolve(process.cwd(), 'pacts'),
-    logLevel: 'info',
+    log: path.resolve('./logs'),
+    dir: path.resolve('./pacts'),
+    logLevel: 'debug',
 });
 
 describe('Pact with ProviderService', () => {
