@@ -8,3 +8,4 @@ venv
 .env
 node_modules
 pacts
+logs
