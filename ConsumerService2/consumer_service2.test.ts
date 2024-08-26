@@ -1,5 +1,7 @@
-import { Pact } from '@pact-foundation/pact';
+import { Pact, Matchers } from '@pact-foundation/pact';
 import path from 'path';
+
+const { like } = Matchers;
 
 const provider = new Pact({
     consumer: 'ConsumerService2',
@@ -15,7 +17,7 @@ describe('Pact with ProviderService', () => {
     afterAll(() => provider.finalize());
 
     it('should receive weather data', async () => {
-        const expected = { TemperatureC: 25, Summary: 'Sunny' };
+        const expected = { temperature: like(25), summary: like('Sunny') };
 
         await provider.addInteraction({
             state: 'Weather data is available',
@@ -32,7 +34,10 @@ describe('Pact with ProviderService', () => {
 
         const response = await fetch('http://localhost:1234/weatherforecast');
         const responseJson = await response.json();
-        expect(responseJson).toEqual(expected);
+        expect(responseJson).toEqual(expect.objectContaining({
+            temperature: expect.any(Number),
+            summary: expect.any(String),
+        }));
 
         await provider.verify();
     });

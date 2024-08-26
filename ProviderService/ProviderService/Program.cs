@@ -3,19 +3,32 @@ builder.Services.AddEndpointsApiExplorer();
 
 var app = builder.Build();
 
-var Summaries = new[]
+var weatherMappings = new List<WeatherMapping>
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild",
-    "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+    new(-40, -20, "Freezing"),
+    new(-20, -10, "Bracing"),
+    new(-10, 0, "Chilly"),
+    new(0, 10, "Cool"),
+    new(10, 20, "Mild"),
+    new(20, 30, "Sunny"),
+    new(30, 40, "Hot"),
+    new(40, 55, "Scorching")
 };
 
 app.MapGet("/hello", () => "Hello World!");
 
-app.MapGet("/weather", () => new
+app.MapGet("/weatherforecast", () =>
 {
-    Date = DateTime.Now,
-    TemperatureC = new Random().Next(-20, 55),
-    Summary = Summaries[new Random().Next(Summaries.Length)]
+    var temperature = new Random().Next(-20, 55);
+    var weather = weatherMappings.First(w => temperature >= w.Min && temperature <= w.Max);
+    return new
+    {
+        //Date = DateTime.Now,
+        Temperature = temperature,
+        weather.Summary
+    };
 });
 
 app.Run();
+
+record WeatherMapping(int Min, int Max, string Summary);
