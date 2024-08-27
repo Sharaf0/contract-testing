@@ -22,3 +22,6 @@ cp -R $path_to_pacts/*$provider_lower.json pacts/
 kill $(lsof -t -i:5228)
 
 dotnet run --project $provider/ProviderService.csproj & dotnet test
+
+#kill the server again
+kill $(lsof -t -i:5228)
