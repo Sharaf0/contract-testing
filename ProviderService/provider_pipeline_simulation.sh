@@ -18,4 +18,7 @@ mkdir -p pacts
 cp -R $path_to_pacts/*$provider.json pacts/
 cp -R $path_to_pacts/*$provider_lower.json pacts/
 
-dotnet test
+#if server is running on port 5228, kill it
+kill $(lsof -t -i:5228)
+
+dotnet run --project $provider/ProviderService.csproj & dotnet test

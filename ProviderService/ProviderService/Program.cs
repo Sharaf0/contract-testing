@@ -1,9 +1,15 @@
-var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddEndpointsApiExplorer();
+namespace ProviderService;
 
-var app = builder.Build();
+public class Program
+{
+    private static void Main(string[] args)
+    {
+        var builder = WebApplication.CreateBuilder(args);
+        builder.Services.AddEndpointsApiExplorer();
 
-var weatherMappings = new List<WeatherMapping>
+        var app = builder.Build();
+
+        var weatherMappings = new List<WeatherMapping>
 {
     new(-40, -20, "Freezing"),
     new(-20, -10, "Bracing"),
@@ -15,20 +21,22 @@ var weatherMappings = new List<WeatherMapping>
     new(40, 55, "Scorching")
 };
 
-app.MapGet("/hello", () => "Hello World!");
+        app.MapGet("/hello", () => "Hello World!");
 
-app.MapGet("/weatherforecast", () =>
-{
-    var temperature = new Random().Next(-20, 55);
-    var weather = weatherMappings.First(w => temperature >= w.Min && temperature <= w.Max);
-    return new
-    {
-        //Date = DateTime.Now,
-        Temperature = temperature,
-        weather.Summary
-    };
-});
+        app.MapGet("/weatherforecast", () =>
+        {
+            var temperature = new Random().Next(-20, 55);
+            var weather = weatherMappings.First(w => temperature >= w.Min && temperature <= w.Max);
+            return new
+            {
+                //Date = DateTime.Now,
+                Temperature = temperature,
+                weather.Summary
+            };
+        });
 
-app.Run();
+        app.Run();
+    }
+}
 
 record WeatherMapping(int Min, int Max, string Summary);

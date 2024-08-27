@@ -1,13 +1,13 @@
 using PactNet.Infrastructure.Outputters;
 using PactNet.Verifier;
 
-namespace ProviderService.Tests;
+namespace ProviderServiceTests;
 
-public class UnitTest1
+public class PactTests
 {
     private readonly IPactVerifierProvider pactVerifier;
 
-    public UnitTest1()
+    public PactTests()
     {
         var config = new PactVerifierConfig
         {
@@ -21,7 +21,7 @@ public class UnitTest1
     }
 
     [Fact]
-    public void Test4()
+    public void PactVerification()
     {
         var files = GetPactFilesNames();
         foreach (var file in files)
