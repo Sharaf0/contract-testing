@@ -10,16 +10,16 @@ public class Program
         var app = builder.Build();
 
         var weatherMappings = new List<WeatherMapping>
-{
-    new(-40, -20, "Freezing"),
-    new(-20, -10, "Bracing"),
-    new(-10, 0, "Chilly"),
-    new(0, 10, "Cool"),
-    new(10, 20, "Mild"),
-    new(20, 30, "Sunny"),
-    new(30, 40, "Hot"),
-    new(40, 55, "Scorching")
-};
+        {
+            new(-40, -20, "Freezing"),
+            new(-20, -10, "Bracing"),
+            new(-10, 0, "Chilly"),
+            new(0, 10, "Cool"),
+            new(10, 20, "Mild"),
+            new(20, 30, "Sunny"),
+            new(30, 40, "Hot"),
+            new(40, 55, "Scorching")
+        };
 
         app.MapGet("/hello", () => "Hello World!");
 
