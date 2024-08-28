@@ -3,11 +3,11 @@ using PactNet.Verifier;
 
 namespace ProviderServiceTests;
 
-public class PactTests
+public class ContractTesting
 {
     private readonly IPactVerifierProvider pactVerifier;
 
-    public PactTests()
+    public ContractTesting()
     {
         var config = new PactVerifierConfig
         {
