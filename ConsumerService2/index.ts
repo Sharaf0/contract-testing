@@ -16,7 +16,7 @@ app.get('/hello', (req, res) => {
 app.get('/weather', async (_, res) => {
     try {
         console.log(`Fetching weather from ${providerServiceUrl}`);
-        const response = await fetch(`${providerServiceUrl}/weather`);
+        const response = await fetch(`${providerServiceUrl}/weatherforecast`);
         const responseJson = await response.json();
         res.send(responseJson);
     } catch (error) {

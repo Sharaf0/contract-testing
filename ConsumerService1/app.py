@@ -18,7 +18,7 @@ def hello():
 @app.route('/weather', methods=['GET'])
 def get_weather():
     print(f'Fetching weather from {provider_service_url}')
-    response = requests.get(f'{provider_service_url}/weather')
+    response = requests.get(f'{provider_service_url}/weatherforecast')
     return jsonify(response.json())
 
 if __name__ == '__main__':
